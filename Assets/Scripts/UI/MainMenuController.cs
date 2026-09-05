@@ -1,3 +1,4 @@
+using StickmanOfWar.Map;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
 
     private const string GameplaySceneName = "Gameplay";
+    private const string MapSelectSceneName = "MapSelect";
     private const string HasSaveKey = "HasSave"; // stand-in for a future save system
 
     private void Start()
@@ -29,7 +31,8 @@ public class MainMenuController : MonoBehaviour
 
     private void OnNewGame()
     {
-        SceneManager.LoadScene(GameplaySceneName);
+        RunState.StartNewRun();
+        SceneManager.LoadScene(MapSelectSceneName);
     }
 
     private void OnContinue()
