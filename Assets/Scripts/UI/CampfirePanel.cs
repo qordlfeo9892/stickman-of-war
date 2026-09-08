@@ -9,7 +9,8 @@ namespace StickmanOfWar.UI
     {
         [SerializeField] private Button restButton;
         [SerializeField] private Button partySlotButton;
-        [SerializeField] private Button bagSlotButton;
+        [SerializeField] private Button bagWidthButton;
+        [SerializeField] private Button bagHeightButton;
 
         private Action onDismiss;
 
@@ -20,7 +21,8 @@ namespace StickmanOfWar.UI
 
             restButton.gameObject.SetActive(true);
             partySlotButton.gameObject.SetActive(RunState.PartySizeCap < RunState.MaxPartySizeCap);
-            bagSlotButton.gameObject.SetActive(RunState.BagSizeCap < RunState.MaxBagSizeCap);
+            bagWidthButton.gameObject.SetActive(RunState.Bag.Width < RunState.MaxBagDimension);
+            bagHeightButton.gameObject.SetActive(RunState.Bag.Height < RunState.MaxBagDimension);
 
             restButton.onClick.RemoveAllListeners();
             restButton.onClick.AddListener(() => Choose(null));
@@ -28,8 +30,11 @@ namespace StickmanOfWar.UI
             partySlotButton.onClick.RemoveAllListeners();
             partySlotButton.onClick.AddListener(() => Choose(RunState.IncreasePartySizeCap));
 
-            bagSlotButton.onClick.RemoveAllListeners();
-            bagSlotButton.onClick.AddListener(() => Choose(RunState.IncreaseBagSizeCap));
+            bagWidthButton.onClick.RemoveAllListeners();
+            bagWidthButton.onClick.AddListener(() => Choose(RunState.IncreaseBagWidth));
+
+            bagHeightButton.onClick.RemoveAllListeners();
+            bagHeightButton.onClick.AddListener(() => Choose(RunState.IncreaseBagHeight));
         }
 
         private void Choose(Action effect)

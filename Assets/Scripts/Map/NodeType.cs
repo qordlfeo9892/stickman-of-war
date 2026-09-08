@@ -8,6 +8,7 @@ namespace StickmanOfWar.Map
         Shop,
         Tavern,
         Campfire,
-        Boss
+        Boss,
+        Castle
     }
 }

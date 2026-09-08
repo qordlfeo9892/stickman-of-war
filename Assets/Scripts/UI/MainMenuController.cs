@@ -13,9 +13,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject buttonPanel;
     [SerializeField] private GameObject settingsPanel;
 
-    private const string GameplaySceneName = "Gameplay";
     private const string MapSelectSceneName = "MapSelect";
-    private const string HasSaveKey = "HasSave"; // stand-in for a future save system
 
     private void Start()
     {
@@ -25,7 +23,7 @@ public class MainMenuController : MonoBehaviour
         settingsBackButton.onClick.AddListener(OnCloseSettings);
         quitButton.onClick.AddListener(OnQuit);
 
-        continueButton.interactable = PlayerPrefs.GetInt(HasSaveKey, 0) == 1;
+        continueButton.interactable = SaveSystem.HasSave();
         settingsPanel.SetActive(false);
     }
 
@@ -37,8 +35,8 @@ public class MainMenuController : MonoBehaviour
 
     private void OnContinue()
     {
-        // TODO: load real save data before switching scenes once a save system exists.
-        SceneManager.LoadScene(GameplaySceneName);
+        SaveSystem.Load();
+        SceneManager.LoadScene(MapSelectSceneName);
     }
 
     private void OnOpenSettings()
